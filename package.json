@@ -1,0 +1,19 @@
+{
+  "name": "dance-lessons-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.12",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1",
+    "node-telegram-bot-api": "^0.66.0",
+    "robokassa": "^0.0.4"
+  }
+}
