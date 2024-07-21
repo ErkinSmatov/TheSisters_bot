@@ -74,7 +74,7 @@ bot.onText(/\/start/, async (msg) => {
             }
         });
     } else {
-        bot.sendMessage(chatId, `Привет! Давайте выберем из меню снизу чем я могу вам помочь?`, {
+        bot.sendMessage(chatId, `Привет! Добро пожаловать на online Amazonka v2.0 ❤️\nДавайте выберем из меню снизу чем я могу вам помочь?`, {
             reply_markup: {
                 keyboard: [['Список уроков', 'Просмотреть тарифы'], ['Связаться с оператором', 'Помощь']], //, ['Связаться с оператором'], ['Помощь']
                 resize_keyboard: true,
@@ -119,8 +119,7 @@ bot.on('message', async (msg) => {
             return [{ text: item.name, callback_data: `package_${item.key}` }];
         });
 
-        await bot.sendMessage(chatId, 'Добро пожаловать на online Amazonka v2.0 ❤️\nУроки длятся 8 минут\nПодарочные уроки по 4 минуты');
-        await bot.sendMessage(chatId, 'Выберите один из пакетов:', {
+        await bot.sendMessage(chatId, 'Выберите один из тарифов для просмотра подробной информации:\n- Уроки длятся 8 минут\n- Подарочные уроки по 4 минуты', {
             reply_markup: {
                 inline_keyboard: packageButtons
             }
@@ -313,8 +312,7 @@ bot.on('callback_query', async (callbackQuery) => {
             return [{ text: item.name, callback_data: `package_${item.key}` }];
         });
 
-        await bot.sendMessage(chatId, 'Добро пожаловать на online Amazonka v2.0 ❤️\nУроки длятся 8 минут\nПодарочные уроки по 4 минуты');
-        await bot.sendMessage(chatId, 'Выберите один из пакетов:', {
+        await bot.sendMessage(chatId, 'Выберите один из тарифов для просмотра подробной информации:\n- Уроки длятся 8 минут\n- Подарочные уроки по 4 минуты', {
             reply_markup: {
                 inline_keyboard: packageButtons
             }
