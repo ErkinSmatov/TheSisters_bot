@@ -8,9 +8,9 @@ const TELEGRAM_BOT_TOKEN = config.get('telegramBotToken');
 const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: true });
 
 const packageDetails = [
-    { key: '1', amount: 3550, name: 'Тариф #1 - 3550тг', description: '1 видео урок\n«Гипнотело» - учимся пластичности', photo: './assets/kurs1.jpg' },
-    { key: '2', amount: 5055, name: 'Тариф #2 - 5055тг', description: '2 видео урока\n«Гипнотело» учимся пластичности\n«Попа Движ» учимся танцевать папой', photo: './assets/kurs2.jpg' },
-    { key: '3', amount: 7077, name: 'Тариф #3 - 7077тг', description: '2 видео урока + 🎁подарочные уроки\n«Гипнотело» учимся пластичности\n«Попа Движ» учимся танцевать папой\n++\n🎁подарочный урок "Упругая попа"\n🎁подарочный урок "Для плоского живота"', photo: './assets/kurs3.jpg' }
+    { key: '1', amount: 3550, name: 'Тариф #1 - 3550тг', description: '1 видео урок\n«ГипноТело» - учимся пластичности', photo: './assets/tarif1.png' },
+    { key: '2', amount: 5055, name: 'Тариф #2 - 5055тг', description: '2 видео урока\n«ГипноТело» - учимся пластичности\n«ПопаДвиж» учимся танцевать попой', photo: './assets/tarif2.png' },
+    { key: '3', amount: 7077, name: 'Тариф #3 - 7077тг', description: '2 видео урока + 🎁 подарочные уроки\n«ГипноТело» учимся пластичности\n«ПопаДвиж» учимся танцевать попой\n++\n🎁 подарочный урок "Упругая попа"\n🎁подарочный урок "Плоский живот"', photo: './assets/tarif3.png' }
 ];
 const lessonsPhoto = [
     {
@@ -192,6 +192,7 @@ Username: @${from.username || ''}
 ${userLink ? `Ссылка на чат: [Перейти в чат](${userLink})` : 'Ссылка на чат недоступна, так как у пользователя нет username.'}`;
                 // Отправляем информацию об отправителе
                 await bot.sendMessage(targetChatId, userInfo, { parse_mode: 'Markdown' });
+                const { userDoc } = await updateUserAndCreateInvoice(chatId, existingUser.name, existingUser.phone, selectedPackage);
                 await bot.sendMessage(chatId, 'Спасибо за покупку, оператор получил ваше сообщение(чек), скоро вам отправять ссылку на канал с уроками', {
                     reply_markup: {
                         keyboard: [['Список уроков', 'Просмотреть тарифы'], ['Связаться с оператором', 'Помощь']],
@@ -245,7 +246,7 @@ bot.on('callback_query', async (callbackQuery) => {
 
         if (existingUser) {
             try {
-                const { userDoc } = await updateUserAndCreateInvoice(chatId, existingUser.name, existingUser.phone, selectedPackage);
+                // const { userDoc } = await updateUserAndCreateInvoice(chatId, existingUser.name, existingUser.phone, selectedPackage);
                 await bot.sendMessage(chatId, `1) Пожалуйста, совершите оплату через Kaspi по ссылке ниже`, {
                     reply_markup: {
                         inline_keyboard: [
